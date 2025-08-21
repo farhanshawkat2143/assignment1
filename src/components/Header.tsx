@@ -9,7 +9,6 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
-  // start null to avoid SSR/CSR mismatch
   const [active, setActive] = useState<string | null>(null);
 
   const links = [
@@ -21,13 +20,13 @@ export default function Header() {
     { href: '/court-room', label: 'Court Room' },
   ];
 
-  // ✅ Load cookie only on client
+
   useEffect(() => {
     const last = getCookie('lastPage') || '/';
     setActive(last);
   }, []);
 
-  // ✅ Save cookie when active changes
+  
   useEffect(() => {
     if (active) setCookie('lastPage', active, 30);
   }, [active]);
